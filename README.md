@@ -1,4 +1,4 @@
-# Backend Java Spring Boot Location 
+# Backend Java Spring Boot Persons 
 
 > Diseño de la base de datos con MySQL
 
