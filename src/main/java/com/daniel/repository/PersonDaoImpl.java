@@ -1,23 +1,22 @@
-package com.daniel.service;
+package com.daniel.repository;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Repository;
 
 import com.daniel.entity.Person;
-import com.daniel.repository.PersonDao;
 
-@Service
-public class PersonServiceImpl implements PersonService {
-	
-	@Autowired
-	private PersonDao personDao;
-	
+@Repository
+@Transactional
+public class PersonDaoImpl extends AbsctractSession implements PersonDao {
+
 	@Override
 	public void savePerson(Person persona) {
 		// TODO Auto-generated method stub
-		personDao.savePerson(persona);
+		
+		getSessionFactory().persist(persona);
 	}
 
 	@Override

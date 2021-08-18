@@ -2,7 +2,11 @@ package com.daniel.service;
 
 import java.util.List;
 
-import com.daniel.model.Person;
+import org.springframework.stereotype.Service;
+
+import com.daniel.entity.Person;
+
+
 
 public interface PersonService {
 	

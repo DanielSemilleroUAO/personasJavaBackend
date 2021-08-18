@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import com.daniel.model.Count;
-import com.daniel.model.Person;
+import com.daniel.entity.Count;
+import com.daniel.entity.Person;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @CrossOrigin
@@ -48,8 +50,8 @@ public class CountsController {
 	// Post
 	@Operation(summary = "Create person", description = "create person")
 	@PostMapping("/counts")
-	public ResponseEntity<Person> postCreatePerson(Person person) {
-		return new ResponseEntity<Person>(person, HttpStatus.OK);
+	public ResponseEntity<Count> postCreatePerson(@RequestBody Count count) {
+		return new ResponseEntity<Count>(count, HttpStatus.OK);
 	}
 
 	// Put

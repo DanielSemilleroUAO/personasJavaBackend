@@ -3,6 +3,7 @@ package com.daniel.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,19 +12,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.daniel.model.Person;
+import com.daniel.entity.Person;
+import com.daniel.service.PersonService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @CrossOrigin
+@RequestMapping("v1/api")
 @RestController
-@RequestMapping("api/v1")
 @Tag(name = "Service Person Controller")
 public class PersonController {
+	
+	@Autowired
+	PersonService personService;
 	
 	// Get
 	@Operation(summary = "Get all persons", description = "retrieve all persons")
@@ -44,16 +50,18 @@ public class PersonController {
 	}
 	
 	// Post
-	@Operation(summary = "Create person", description = "create person")
-	@PostMapping("/persons")
-	public ResponseEntity<Person> postCreatePerson(Person person) {
+	@Operation(summary = "Get person by id (cedula)", description = "find person by id")
+	@PostMapping("/persona")
+	public ResponseEntity<Person> createPerson(@RequestBody Person person) {
+	
+		personService.savePerson(person);
 		return new ResponseEntity<Person>(person, HttpStatus.OK);
 	}
 	
 	// Put
 	@Operation(summary = "Update person", description = "update person")
 	@PutMapping("/persons")
-	public ResponseEntity<Person> updatePerson(Person person) {
+	public ResponseEntity<Person> updatePerson(@RequestBody Person person) {
 		return new ResponseEntity<Person>(person, HttpStatus.OK);
 	}
 	

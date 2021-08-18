@@ -1,32 +1,64 @@
-package com.daniel.model;
+package com.daniel.entity;
+
+import javax.annotation.Generated;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class Person {
+import lombok.Data;
+
+@Entity
+@Table(name="person")
+public class Person{
 	
+	@Id
+	@Column(name = "cedula")
+	private Long cedula;
+	@Column(name = "nombre")
 	private String nombre;
-	private String cedula;
+	@Column(name = "fecha_nacimiento")
 	private String fechaNacimiento;
+	@Column(name = "numero_telefono")
 	private String numeroTelefonico;
+	@Column(name = "email")
 	private String email;
+	@Column(name = "direccion")
 	private String direccion;
+	@Column(name = "ciudad")
 	private String ciudadResidencia;
+	@Column(name = "profesion")
 	private String profesion;
+	@Column(name = "trabajo_actual")
 	private String trabajoActual;
+	@Column(name = "ingresos")
 	private String ingresos;
+	@Column(name = "egresos")
 	private String egresos;
+	
+	@OneToOne
+	@JoinColumn(name = "id_tarjeta")
 	private Count count;
+	
 	
 	public Person() {
 		// TODO Auto-generated constructor stub
-	}
+	}	
+	
 
-	public Person(String nombre, String cedula, String fechaNacimiento, String numeroTelefonico, String email,
+	public Person(Long cedula, String nombre, String fechaNacimiento, String numeroTelefonico, String email,
 			String direccion, String ciudadResidencia, String profesion, String trabajoActual, String ingresos,
 			String egresos, Count count) {
 		super();
-		this.nombre = nombre;
 		this.cedula = cedula;
+		this.nombre = nombre;
 		this.fechaNacimiento = fechaNacimiento;
 		this.numeroTelefonico = numeroTelefonico;
 		this.email = email;
@@ -39,20 +71,21 @@ public class Person {
 		this.count = count;
 	}
 
+
+	public Long getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(Long cedula) {
+		this.cedula = cedula;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public String getCedula() {
-		return cedula;
-	}
-
-	public void setCedula(String cedula) {
-		this.cedula = cedula;
 	}
 
 	public String getFechaNacimiento() {
@@ -134,9 +167,5 @@ public class Person {
 	public void setCount(Count count) {
 		this.count = count;
 	}
-	
-	
-	
-	
 	
 }
