@@ -6,5 +6,5 @@
 
 > Documentacion Swagger
 
-![image](imagenes/swagger.PNG)
+![image](imagenes/Swagger.PNG)
 
